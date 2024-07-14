@@ -1,0 +1,26 @@
+.car-control {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr); /* Three rows with equal height */
+    grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+    gap: 10px; /* Gap between grid items */
+}
+
+#forward-btn {
+    grid-row: 1;
+    grid-column: 2;
+  }
+  
+  #left-btn {
+    grid-row: 2;
+    grid-column: 1;
+  }
+  
+  #right-btn {
+    grid-row: 2;
+    grid-column: 3;
+  }
+  
+  #back-btn {
+    grid-row: 3;
+    grid-column: 2;
+  }

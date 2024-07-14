@@ -1,15 +1,15 @@
 
 <div class="car-control">
-    <button mat-icon-button (click)="sendCommand('l')">
+    <button mat-icon-button id="left-btn" (click)="sendCommand('l')">
         <mat-icon>arrow_back</mat-icon>
     </button>
-    <button mat-icon-button (click)="sendCommand('r')">
+    <button mat-icon-button id="right-btn" (click)="sendCommand('r')">
         <mat-icon>arrow_forward</mat-icon>
     </button>
-    <button mat-icon-button (click)="sendCommand('f')">
+    <button mat-icon-button id="forward-btn" (click)="sendCommand('f')">
         <mat-icon>arrow_upward</mat-icon>
     </button>
-    <button mat-icon-button (click)="sendCommand('b')">
+    <button mat-icon-button id="back-btn" (click)="sendCommand('b')">
         <mat-icon>arrow_downward</mat-icon>
     </button>
 </div>
