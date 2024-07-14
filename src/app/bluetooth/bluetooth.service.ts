@@ -10,6 +10,10 @@ export class BluetoothService {
   private commandCharacteristic: BluetoothRemoteGATTCharacteristic | null = null;
   private _isConnected: boolean = false;
 
+  private deviceName ='ESP32-Car';
+  private bleServiceUUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
+  private commandCharacteristicUUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8";
+
   constructor() {}
   
   async connect() {
@@ -17,48 +21,34 @@ export class BluetoothService {
       alert("Web Bluetooth API is not available.");
       return;
     }
-
+  
     try {
+      // Request the specific device by name and service UUID
       this.device = await navigator.bluetooth.requestDevice({
-        acceptAllDevices: true,
-        optionalServices: []
+        filters: [{ name: this.deviceName }],
+        optionalServices: [this.bleServiceUUID]
       });
-
+  
       if (!this.device.gatt) {
         alert("Failed to connect to Bluetooth device.");
         return;
       }
-
+  
       this.server = await this.device.gatt.connect();
       this._isConnected = true;
-      
-      if (!this.server) {
-        alert("Failed to connect to Bluetooth device.");
-        return;
-      }
-
-      const services = await this.server?.getPrimaryServices();
-
-      for (const service of services) {
-        const characteristics = await service.getCharacteristics();
-        for (const characteristic of characteristics) {
-          const descriptors = await characteristic.getDescriptors();
-          for (const descriptor of descriptors) {
-            await descriptor.readValue();
-            const name = new TextDecoder().decode(await descriptor.readValue());
-            if (name === 'command') {
-              this.commandCharacteristic = characteristic;
-            }
-          }
-        }
-      }
-
+  
+      // Get the specified service by UUID
+      const service = await this.server.getPrimaryService(this.bleServiceUUID);
+  
+      // Get the command characteristic by UUID
+      this.commandCharacteristic = await service.getCharacteristic(this.commandCharacteristicUUID);
+  
       if (!this.commandCharacteristic) {
         alert("Failed to find command characteristic.");
         return;
-      }    
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Error connecting to Bluetooth device:", error);
       throw error;
     }
   }
