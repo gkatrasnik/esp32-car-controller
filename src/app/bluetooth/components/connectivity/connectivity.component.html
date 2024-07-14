@@ -1,0 +1,10 @@
+<div class="connectivity">
+    <button mat-button [disabled]="_isConnectedToDevice" (click)="connect()">        
+        Connect
+        <mat-icon>bluetooth</mat-icon>
+    </button>
+    <button mat-button [disabled]="!_isConnectedToDevice" (click)="disconnect()">
+        Disconnect
+        <mat-icon>bluetooth_disabled</mat-icon>
+    </button>
+</div>
