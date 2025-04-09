@@ -22,7 +22,5 @@ export class CarControlComponent {
     } catch (error) {
       console.error(error);
     }
-  }
-
-  
+  }  
 }

@@ -1,15 +1,38 @@
 
 <div class="car-control">
-    <button mat-icon-button id="left-btn" (click)="sendCommand('l')">
+    <button mat-icon-button
+            id="left-btn"
+            (mousedown)="sendCommand('l')"
+            (mouseup)="sendCommand('s')"
+            (touchstart)="sendCommand('l')"
+            (touchend)="sendCommand('s')">
         <mat-icon>arrow_back</mat-icon>
     </button>
-    <button mat-icon-button id="right-btn" (click)="sendCommand('r')">
+    
+    <button mat-icon-button
+            id="right-btn"
+            (mousedown)="sendCommand('r')"
+            (mouseup)="sendCommand('s')"
+            (touchstart)="sendCommand('r')"
+            (touchend)="sendCommand('s')">
         <mat-icon>arrow_forward</mat-icon>
     </button>
-    <button mat-icon-button id="forward-btn" (click)="sendCommand('f')">
+    
+    <button mat-icon-button
+            id="forward-btn"
+            (mousedown)="sendCommand('f')"
+            (mouseup)="sendCommand('s')"
+            (touchstart)="sendCommand('f')"
+            (touchend)="sendCommand('s')">
         <mat-icon>arrow_upward</mat-icon>
     </button>
-    <button mat-icon-button id="back-btn" (click)="sendCommand('b')">
+    
+    <button mat-icon-button
+            id="back-btn"
+            (mousedown)="sendCommand('b')"
+            (mouseup)="sendCommand('s')"
+            (touchstart)="sendCommand('b')"
+            (touchend)="sendCommand('s')">
         <mat-icon>arrow_downward</mat-icon>
     </button>
 </div>
